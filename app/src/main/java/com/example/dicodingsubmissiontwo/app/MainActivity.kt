@@ -9,14 +9,23 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.databinding.ActivityMainBinding
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var mBinding: ActivityMainBinding
+    private val mViewModel: MainViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        initializeObserver()
+    }
+
+    private fun initializeObserver() {
+        mViewModel.getErrorMessage().observe(this) { errorMessage ->
+            mBinding.errorMessage = errorMessage
+        }
     }
 
     private fun initializeSearchView(menu: Menu) {
@@ -35,7 +44,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        // TODO: 10/3/2020 FETCH API
+        if(!query.isNullOrEmpty()) mViewModel.searchUser(query)
         return true
     }
 
