@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">DicodingSubmissionTwo</string>
+    <string name="app_name">Github User Application</string>
+
+    <string name="text_search">Pencarian</string>
+    <string name="text_no_user_found">User tidak ditemukan</string>
+    <string name="text_search_hint">Masukkan username github</string>
 </resources>
