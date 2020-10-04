@@ -2,6 +2,7 @@ package com.example.dicodingsubmissiontwo.app
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingsubmissiontwo.R
+import com.example.dicodingsubmissiontwo.app.detail.UserDetailActivity
 import com.example.dicodingsubmissiontwo.databinding.ActivityMainBinding
 import com.example.dicodingsubmissiontwo.model.GithubUser
 import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
@@ -89,6 +91,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     override fun onQueryTextChange(newText: String?): Boolean = false
 
     override fun onItemClicked(data: GithubUser) {
-        TODO("Not yet implemented")
+        val intent = Intent(this@MainActivity, UserDetailActivity::class.java)
+        intent.putExtra(UserDetailActivity.GITHUB_USER_DATA, data)
+        startActivity(intent)
     }
 }

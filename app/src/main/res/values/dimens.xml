@@ -4,6 +4,8 @@
     <dimen name="image_sm_size">48dp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="dimen_24dp">24dp</dimen>
+    <dimen name="dimen_16dp">16dp</dimen>
     <dimen name="dimen_12dp">12dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
 

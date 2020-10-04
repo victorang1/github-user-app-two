@@ -5,7 +5,11 @@
     <string name="text_no_user_found">User tidak ditemukan</string>
     <string name="text_lets_search">Ayo temukan temanmu dengan alat bantuan pencarian</string>
     <string name="text_search_hint">Masukkan username github</string>
-    <string name="text_search_error">Pencarian data gagal. Silakan coba lagi nanti</string>>
+    <string name="text_search_error">Pencarian data gagal. Silakan coba lagi nanti</string>
 
     <string name="user_arrow_icon">Tekan untuk melihat informasi user lebih detail</string>
+    <string name="logo_description">Logo aplikasi</string>
+
+    <string name="tab_follower">Pengikut</string>
+    <string name="tab_following">Mengikuti</string>
 </resources>

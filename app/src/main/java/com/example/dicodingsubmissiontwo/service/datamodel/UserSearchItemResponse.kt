@@ -7,5 +7,9 @@ data class UserSearchItemResponse(
     val username: String,
     val id: Long,
     @SerializedName("avatar_url")
-    val avatar: String
+    val avatar: String,
+    @SerializedName("public_repos")
+    val reposCount: Long,
+    val followers: Long,
+    val following: Long
 )

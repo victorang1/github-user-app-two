@@ -9,4 +9,8 @@
     <string name="text_search_error">Something went wrong while searching. Please try again later</string>
 
     <string name="user_arrow_icon">Press to see user detail information</string>
+    <string name="logo_description">Application Logo</string>
+
+    <string name="tab_follower">Followers</string>
+    <string name="tab_following">Following</string>
 </resources>

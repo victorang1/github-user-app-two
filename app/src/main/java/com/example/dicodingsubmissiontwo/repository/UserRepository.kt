@@ -40,4 +40,28 @@ class UserRepository(private val userService: UserService) : IUserRepository, Ko
             }
         })
     }
+
+    override fun getUserDetails(username: String, callback: ApiConfig.ApiHandler<UserSearchItemResponse>) {
+        userService.getUserDetail(username).enqueue(object : Callback<UserSearchItemResponse> {
+            override fun onResponse(
+                call: Call<UserSearchItemResponse>,
+                response: Response<UserSearchItemResponse>
+            ) {
+                if (response.isSuccessful) {
+                    try {
+                        callback.onSuccess(response.body()!!)
+                    } catch (e: Exception) {
+                        callback.onFailure(e)
+                    }
+                }
+                else {
+                    callback.onFailure(Throwable(resources.getString(R.string.text_search_error)))
+                }
+            }
+
+            override fun onFailure(call: Call<UserSearchItemResponse>, t: Throwable) {
+                callback.onFailure(t)
+            }
+        })
+    }
 }
