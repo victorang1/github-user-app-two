@@ -56,7 +56,7 @@ class FollowingFragment: Fragment() {
     }
 
     private fun initializeAdapter() {
-        mAdapter = UserAdapter(activity!!.applicationContext, arrayListOf())
+        mAdapter = UserAdapter(requireContext(), arrayListOf())
         val layoutManager = LinearLayoutManager(activity)
         mBinding.rvFollowing.layoutManager = layoutManager
         mBinding.rvFollowing.addItemDecoration(
