@@ -4,6 +4,9 @@
 
     <string name="text_search">Search</string>
     <string name="text_no_user_found">No user found</string>
+    <string name="text_lets_search">Let\'s find your friends with searching tool</string>
     <string name="text_search_hint">Input github username</string>
     <string name="text_search_error">Something went wrong while searching. Please try again later</string>
+
+    <string name="user_arrow_icon">Press to see user detail information</string>
 </resources>

@@ -11,7 +11,5 @@ val viewModelModule = module {
         return MainViewModel(userRepository)
     }
 
-    viewModel {
-        provideMainViewModel(get())
-    }
+    viewModel { provideMainViewModel(get()) }
 }

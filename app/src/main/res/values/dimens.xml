@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="image_lg_size">200dp</dimen>
+    <dimen name="image_lg_size">160dp</dimen>
+    <dimen name="image_sm_size">48dp</dimen>
+    <dimen name="dimen_48dp">48dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
 
-    <dimen name="text_12sp">12dp</dimen>
-    <dimen name="text_16sp">16dp</dimen>
-    <dimen name="text_20sp">20dp</dimen>
-    <dimen name="text_24sp">24dp</dimen>
+    <dimen name="text_12sp">12sp</dimen>
+    <dimen name="text_16sp">16sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
 </resources>

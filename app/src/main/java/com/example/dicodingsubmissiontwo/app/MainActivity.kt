@@ -5,26 +5,64 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.databinding.ActivityMainBinding
-import org.koin.android.ext.android.inject
+import com.example.dicodingsubmissiontwo.model.GithubUser
+import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
+import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_SUCCESS
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAdapter.OnItemClickCallback {
 
     private lateinit var mBinding: ActivityMainBinding
-    private val mViewModel: MainViewModel by inject()
+    private lateinit var mAdapter: UserAdapter
+    private val mViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        if (mViewModel.getState().value == null) {
+            mBinding.isError = true
+            mBinding.errorMessage = resources.getString(R.string.text_lets_search)
+        }
+        initializeAdapter()
         initializeObserver()
     }
 
+    private fun initializeAdapter() {
+        mAdapter = UserAdapter(this, mViewModel.getSearchResult().value ?: arrayListOf())
+        val layoutManager = LinearLayoutManager(this)
+        mBinding.rvUser.layoutManager = layoutManager
+        mBinding.rvUser.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        mBinding.rvUser.adapter = mAdapter
+        mAdapter.setOnItemClickCallback(this)
+    }
+
     private fun initializeObserver() {
-        mViewModel.getErrorMessage().observe(this) { errorMessage ->
-            mBinding.errorMessage = errorMessage
+        mViewModel.getState().observe(this) { state ->
+            if (state == REQUEST_SUCCESS) {
+                if (!mViewModel.getSearchResult().value.isNullOrEmpty()) {
+                    mBinding.isError = false
+                }
+                else {
+                    mBinding.isError = true
+                    mBinding.errorMessage = resources.getString(R.string.text_no_user_found)
+                }
+                mAdapter.setDataSet(mViewModel.getSearchResult().value ?: arrayListOf())
+            }
+            else if (state == REQUEST_ERROR) {
+                mBinding.isError = true
+                mBinding.errorMessage = mViewModel.getErrorMessage().value ?: resources.getString(R.string.text_search_error)
+            }
+        }
+        mViewModel.getLoadingStatus().observe(this) { isLoading ->
+            mBinding.isLoading = isLoading
+            if (isLoading) mBinding.groupError.visibility = View.GONE
         }
     }
 
@@ -44,9 +82,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()) mViewModel.searchUser(query)
+        if (!query.isNullOrEmpty()) mViewModel.searchUser(query)
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean = false
+
+    override fun onItemClicked(data: GithubUser) {
+        TODO("Not yet implemented")
+    }
 }

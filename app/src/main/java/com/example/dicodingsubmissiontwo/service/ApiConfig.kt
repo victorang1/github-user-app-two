@@ -3,7 +3,9 @@ package com.example.dicodingsubmissiontwo.service
 class ApiConfig {
 
     companion object {
-        val BASE_URL = "https://api.github.com"
+        const val BASE_URL = "https://api.github.com"
+        const val REQUEST_ERROR = 500
+        const val REQUEST_SUCCESS = 200
     }
 
     interface ApiHandler<T> {

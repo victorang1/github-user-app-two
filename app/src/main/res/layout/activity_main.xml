@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="errorMessage"
             type="String" />
+        <variable
+            name="isError"
+            type="Boolean" />
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +25,7 @@
             android:id="@+id/rv_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             />
@@ -28,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/ProgressBarStyle"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,12 +43,11 @@
             />
 
         <ImageView
-            android:id="@+id/iv_group"
+            android:id="@+id/iv_logo"
             android:layout_width="@dimen/image_lg_size"
             android:layout_height="@dimen/image_lg_size"
-            android:src="@drawable/ic_group"
+            android:src="@drawable/logo"
             android:scaleType="fitXY"
-            android:visibility="gone"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -50,17 +57,28 @@
 
         <TextView
             android:id="@+id/tv_no_data"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:layout_marginLeft="@dimen/dimen_48dp"
+            android:layout_marginRight="@dimen/dimen_48dp"
             android:text="@{errorMessage}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_24sp"
-            tools:text="@string/text_no_user_found"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/iv_group"
+            android:gravity="center"
+            tools:text="@string/text_search_error"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isError ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="iv_logo,tv_no_data"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

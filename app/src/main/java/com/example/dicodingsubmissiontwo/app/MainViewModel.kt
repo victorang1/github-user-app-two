@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.example.dicodingsubmissiontwo.model.GithubUser
 import com.example.dicodingsubmissiontwo.repository.IUserRepository
 import com.example.dicodingsubmissiontwo.service.ApiConfig
+import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
+import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_SUCCESS
 import com.example.dicodingsubmissiontwo.service.datamodel.UserSearchItemResponse
 
 class MainViewModel(private val userRepository: IUserRepository) : ViewModel() {
@@ -13,10 +15,12 @@ class MainViewModel(private val userRepository: IUserRepository) : ViewModel() {
     private val errorMessage = MutableLiveData<String>()
     private val searchResult = MutableLiveData<List<GithubUser>>()
     private val isLoading = MutableLiveData<Boolean>()
+    private val state = MutableLiveData<Int>()
 
     fun getErrorMessage(): LiveData<String> = errorMessage
     fun getSearchResult(): LiveData<List<GithubUser>> = searchResult
     fun getLoadingStatus(): LiveData<Boolean> = isLoading
+    fun getState(): LiveData<Int> = state
 
     fun searchUser(username: String) {
         isLoading.value = true
@@ -30,18 +34,20 @@ class MainViewModel(private val userRepository: IUserRepository) : ViewModel() {
                             list.add(setData(itemResponse))
                         }
                     }
-                    isLoading.value = false
                     searchResult.value = list
+                    isLoading.value = false
+                    state.value = REQUEST_SUCCESS
                 }
 
                 override fun onFailure(throwable: Throwable) {
-                    isLoading.value = false
                     errorMessage.value = throwable.message
+                    isLoading.value = false
+                    state.value = REQUEST_ERROR
                 }
             })
     }
 
     private fun setData(itemResponse: UserSearchItemResponse): GithubUser {
-        return GithubUser(itemResponse.id, itemResponse.username, itemResponse.username)
+        return GithubUser(itemResponse.id, itemResponse.username, itemResponse.avatar)
     }
 }
