@@ -70,8 +70,9 @@ class FollowerFragment : Fragment() {
 
     private fun initializeObserver() {
         mViewModel.getState().observe(viewLifecycleOwner) { state ->
+            mBinding.errorMessage = ""
             if (state == ApiConfig.REQUEST_SUCCESS) {
-                if (!mViewModel.getUserFollowers().value.isNullOrEmpty()) {
+                if (mViewModel.getUserFollowers().value.isNullOrEmpty()) {
                     mBinding.errorMessage = resources.getString(R.string.text_no_data)
                 }
                 mAdapter.setDataSet(mViewModel.getUserFollowers().value ?: arrayListOf())

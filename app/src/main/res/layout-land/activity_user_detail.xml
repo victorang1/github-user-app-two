@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="user"
+            type="com.example.dicodingsubmissiontwo.model.GithubUser" />
+        <variable
+            name="isLoading"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}"
+            android:background="@color/colorLighterBlack"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_avatar"
+                    android:layout_width="@dimen/image_mdm_size"
+                    android:layout_height="@dimen/image_mdm_size"
+                    android:layout_margin="@dimen/dimen_12dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_24sp"
+                    android:text="@{user.username}"
+                    tools:text="victorang1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                    app:layout_constraintBottom_toTopOf="@id/tv_repository"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_repository"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:drawableStartCompat="@drawable/ic_repository"
+                    android:drawablePadding="@dimen/dimen_8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.repositoryDisplay}"
+                    tools:text="Repository: 50"
+                    app:layout_constraintTop_toBottomOf="@id/tv_username"
+                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                    app:layout_constraintBottom_toTopOf="@id/tv_followers"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:drawableStartCompat="@drawable/ic_group_blue"
+                    android:drawablePadding="@dimen/dimen_8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.followerDisplay}"
+                    tools:text="Followers: 30"
+                    app:layout_constraintTop_toBottomOf="@id/tv_repository"
+                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:drawableStartCompat="@drawable/ic_group_yellow"
+                    android:drawablePadding="@dimen/dimen_8dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.followingDisplay}"
+                    tools:text="Following: 30"
+                    app:layout_constraintTop_toTopOf="@id/tv_followers"
+                    app:layout_constraintLeft_toRightOf="@id/tv_followers"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_followers"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                app:tabTextColor="@color/colorWhite"
+                app:tabMode="fixed"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
+                />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/ProgressBarDetailStyle"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            android:layout_centerInParent="true"
+            tools:visibility="visible"
+            />
+
+    </RelativeLayout>
+
+</layout>

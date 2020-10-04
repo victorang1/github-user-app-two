@@ -7,6 +7,13 @@
         <item name="actionMenuTextColor">@color/colorWhite</item>
     </style>
 
+    <style name="UserDetailTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+    </style>
+
     <style name="ProgressBarStyle" parent="@style/AppTheme">
         <item name="colorAccent">@color/colorBlack</item>
     </style>
