@@ -11,5 +11,8 @@ data class UserSearchItemResponse(
     @SerializedName("public_repos")
     val reposCount: Long,
     val followers: Long,
-    val following: Long
+    val following: Long,
+    val location: String,
+    val company: String,
+    val name: String
 )

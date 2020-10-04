@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: UserAdapter
     private val mViewModel: MainViewModel by viewModel()
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +71,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
 
     private fun initializeSearchView(menu: Menu) {
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.search).actionView as SearchView
+        searchView = menu.findItem(R.id.search).actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.text_search_hint)
         searchView.setOnQueryTextListener(this)
+        searchView.clearFocus()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -85,6 +87,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) mViewModel.searchUser(query)
+        searchView.clearFocus()
         return true
     }
 

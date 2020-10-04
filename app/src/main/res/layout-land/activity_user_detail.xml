@@ -50,10 +50,27 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/text_24sp"
                     android:text="@{user.username}"
-                    tools:text="victorang1"
+                    tools:text="Victor Ang"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/civ_avatar"
                     app:layout_constraintBottom_toTopOf="@id/tv_repository"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.nameDisplay}"
+                    android:visibility="@{user.nameVisibility}"
+                    tools:text="(victorang1)"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_username"
+                    app:layout_constraintLeft_toRightOf="@id/tv_username"
+                    app:layout_constraintBottom_toTopOf="@id/tv_repository"
+                    app:layout_constraintRight_toRightOf="parent"
                     />
 
                 <TextView
@@ -73,6 +90,50 @@
                     app:layout_constraintBottom_toTopOf="@id/tv_followers"
                     />
 
+                <TextView
+                    android:id="@+id/tv_company"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    app:drawableStartCompat="@drawable/ic_city"
+                    android:drawablePadding="@dimen/dimen_8dp"
+                    android:visibility="@{user.companyVisibility}"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.companyDisplay}"
+                    tools:text="Google Developers Student Club"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_repository"
+                    app:layout_constraintLeft_toRightOf="@id/tv_repository"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_followers"
+                    />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="tv_repository,tv_company"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:drawableStartCompat="@drawable/ic_group_blue"
+                    android:drawablePadding="@dimen/dimen_8dp"
+                    android:visibility="@{user.locationVisibility}"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_16sp"
+                    android:text="@{user.locationDisplay}"
+                    tools:text="Jakarta, Indonesia"
+                    app:layout_constraintTop_toBottomOf="@id/barrier"
+                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
 
                 <TextView
                     android:id="@+id/tv_followers"
@@ -86,14 +147,14 @@
                     android:textSize="@dimen/text_16sp"
                     android:text="@{user.followerDisplay}"
                     tools:text="Followers: 30"
-                    app:layout_constraintTop_toBottomOf="@id/tv_repository"
-                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_location"
+                    app:layout_constraintLeft_toRightOf="@id/tv_location"
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
 
                 <TextView
                     android:id="@+id/tv_following"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16dp"
                     app:drawableStartCompat="@drawable/ic_group_yellow"
@@ -103,7 +164,8 @@
                     android:textSize="@dimen/text_16sp"
                     android:text="@{user.followingDisplay}"
                     tools:text="Following: 30"
-                    app:layout_constraintTop_toTopOf="@id/tv_followers"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_followers"
                     app:layout_constraintLeft_toRightOf="@id/tv_followers"
                     app:layout_constraintBottom_toBottomOf="@id/tv_followers"
                     />

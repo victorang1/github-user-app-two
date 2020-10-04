@@ -46,7 +46,10 @@ class UserDetailViewModel(private val userRepository: IUserRepository) : ViewMod
             itemResponse.avatar,
             itemResponse.reposCount,
             itemResponse.followers,
-            itemResponse.following
+            itemResponse.following,
+            itemResponse.location,
+            itemResponse.company,
+            itemResponse.name
         )
     }
 }

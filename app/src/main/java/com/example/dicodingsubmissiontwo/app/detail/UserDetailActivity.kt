@@ -9,7 +9,6 @@ import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.databinding.ActivityUserDetailBinding
 import com.example.dicodingsubmissiontwo.model.GithubUser
 import com.example.dicodingsubmissiontwo.service.ApiConfig
-import com.google.android.material.tabs.TabLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserDetailActivity : AppCompatActivity() {
