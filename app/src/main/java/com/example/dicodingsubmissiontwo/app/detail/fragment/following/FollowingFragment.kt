@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.app.detail.fragment
+package com.example.dicodingsubmissiontwo.app.detail.fragment.following
 
 import android.os.Bundle
 import android.view.LayoutInflater

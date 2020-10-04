@@ -10,7 +10,7 @@ import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.databinding.UserItemLayoutBinding
 import com.example.dicodingsubmissiontwo.model.GithubUser
 
-class UserAdapter(private val context: Context, private var userList: List<GithubUser>) :
+class UserAdapter(val context: Context, private var userList: List<GithubUser>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback? = null

@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.dicodingsubmissiontwo.R
-import com.example.dicodingsubmissiontwo.app.detail.fragment.FollowerFragment
-import com.example.dicodingsubmissiontwo.app.detail.fragment.FollowingFragment
+import com.example.dicodingsubmissiontwo.app.detail.fragment.follower.FollowerFragment
+import com.example.dicodingsubmissiontwo.app.detail.fragment.following.FollowingFragment
 import com.example.dicodingsubmissiontwo.model.GithubUser
 
 class UserDetailAdapter(private val mContext: Context, fm: FragmentManager) :
