@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="image_lg_size">160dp</dimen>
+    <dimen name="image_mdm_size">100dp</dimen>
     <dimen name="image_sm_size">48dp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>

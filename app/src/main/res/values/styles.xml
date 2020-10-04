@@ -11,6 +11,10 @@
         <item name="colorAccent">@color/colorBlack</item>
     </style>
 
+    <style name="ProgressBarDetailStyle" parent="@style/AppTheme">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="ConstraintCenter">
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
