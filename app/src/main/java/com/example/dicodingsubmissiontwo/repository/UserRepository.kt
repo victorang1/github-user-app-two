@@ -1,11 +1,13 @@
 package com.example.dicodingsubmissiontwo.repository
 
 import android.content.res.Resources
+import android.util.Log
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.service.ApiConfig
 import com.example.dicodingsubmissiontwo.service.UserService
 import com.example.dicodingsubmissiontwo.service.datamodel.UserSearchItemResponse
 import com.example.dicodingsubmissiontwo.service.datamodel.UserSearchResponse
+import com.google.gson.Gson
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Call
@@ -23,6 +25,7 @@ class UserRepository(private val userService: UserService) : IUserRepository, Ko
                 call: Call<UserSearchResponse>,
                 response: Response<UserSearchResponse>
             ) {
+                Log.d("<RESULT>", "onResponse: " + Gson().toJson(response.body()))
                 if (response.isSuccessful) {
                     try {
                         callback.onSuccess(response.body()!!.items)
@@ -47,6 +50,31 @@ class UserRepository(private val userService: UserService) : IUserRepository, Ko
                 call: Call<UserSearchItemResponse>,
                 response: Response<UserSearchItemResponse>
             ) {
+                Log.d("<RESULT>", "onResponse: " + Gson().toJson(response.body()))
+                if (response.isSuccessful) {
+                    try {
+                        callback.onSuccess(response.body()!!)
+                    } catch (e: Exception) {
+                        callback.onFailure(e)
+                    }
+                } else {
+                    callback.onFailure(Throwable(resources.getString(R.string.text_search_error)))
+                }
+            }
+
+            override fun onFailure(call: Call<UserSearchItemResponse>, t: Throwable) {
+                Log.d("<RESULT>", "onResponse: " + Gson().toJson(t.message))
+                callback.onFailure(t)
+            }
+        })
+    }
+
+    override fun fetchUserFollowers(username: String, callback: ApiConfig.ApiHandler<List<UserSearchItemResponse>>) {
+        userService.getUserFollowers(username).enqueue(object : Callback<List<UserSearchItemResponse>> {
+            override fun onResponse(
+                call: Call<List<UserSearchItemResponse>>,
+                response: Response<List<UserSearchItemResponse>>
+            ) {
                 if (response.isSuccessful) {
                     try {
                         callback.onSuccess(response.body()!!)
@@ -59,7 +87,34 @@ class UserRepository(private val userService: UserService) : IUserRepository, Ko
                 }
             }
 
-            override fun onFailure(call: Call<UserSearchItemResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserSearchItemResponse>>, t: Throwable) {
+                callback.onFailure(t)
+            }
+        })
+    }
+
+    override fun fetchUserFollowing(
+        username: String,
+        callback: ApiConfig.ApiHandler<List<UserSearchItemResponse>>
+    ) {
+        userService.getUserFollowing(username).enqueue(object : Callback<List<UserSearchItemResponse>> {
+            override fun onResponse(
+                call: Call<List<UserSearchItemResponse>>,
+                response: Response<List<UserSearchItemResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    try {
+                        callback.onSuccess(response.body()!!)
+                    } catch (e: Exception) {
+                        callback.onFailure(e)
+                    }
+                }
+                else {
+                    callback.onFailure(Throwable(resources.getString(R.string.text_search_error)))
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserSearchItemResponse>>, t: Throwable) {
                 callback.onFailure(t)
             }
         })

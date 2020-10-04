@@ -2,7 +2,6 @@ package com.example.dicodingsubmissiontwo.app.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -17,8 +16,6 @@ class UserDetailActivity : AppCompatActivity() {
     companion object {
         const val GITHUB_USER_DATA: String = "user_data"
     }
-
-    private val TAG = "<RESULT>"
 
     private lateinit var mBinding: ActivityUserDetailBinding
     private lateinit var mSectionsAdapter: UserDetailAdapter
@@ -48,10 +45,10 @@ class UserDetailActivity : AppCompatActivity() {
                 mBinding.user = mViewModel.getUserData().value ?: loadUserError()
                 Glide.with(this)
                     .load(mBinding.user?.avatar)
-                    .apply(RequestOptions.errorOf(R.drawable.ic_person))
+                    .apply(RequestOptions.errorOf(R.drawable.ic_person_white))
                     .into(mBinding.civAvatar)
             } else if (state == ApiConfig.REQUEST_ERROR) {
-                mBinding.user = loadUserError()
+                mBinding.user = loadUserError(mViewModel.getErrorMessage().value)
             }
         }
         mViewModel.getLoadingStatus().observe(this) { isLoading ->
@@ -59,10 +56,10 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadUserError(): GithubUser {
+    private fun loadUserError(textError: String? = resources.getString(R.string.text_error)): GithubUser {
         return GithubUser(
             0,
-            resources.getString(R.string.text_error),
+            textError ?: resources.getString(R.string.text_error),
             ""
         )
     }

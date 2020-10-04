@@ -13,4 +13,12 @@ class UserServiceImpl(private val userEndpoint: UserEndpoint) : UserService {
     override fun getUserDetail(username: String): Call<UserSearchItemResponse> {
         return userEndpoint.getUserDetail(username)
     }
+
+    override fun getUserFollowers(username: String): Call<List<UserSearchItemResponse>> {
+        return userEndpoint.getUserFollowers(username)
+    }
+
+    override fun getUserFollowing(username: String): Call<List<UserSearchItemResponse>> {
+        return userEndpoint.getUserFollowing(username)
+    }
 }

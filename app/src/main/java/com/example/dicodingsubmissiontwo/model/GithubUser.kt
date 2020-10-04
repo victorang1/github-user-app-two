@@ -5,6 +5,7 @@ import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.example.dicodingsubmissiontwo.R
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -18,6 +19,7 @@ data class GithubUser(
     val followers: Long,
     val following: Long
 ) : BaseObservable(), Parcelable, KoinComponent {
+    @IgnoredOnParcel
     private val resources: Resources by inject()
 
     constructor(

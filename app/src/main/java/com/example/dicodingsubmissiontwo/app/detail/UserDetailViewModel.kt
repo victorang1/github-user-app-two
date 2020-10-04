@@ -15,6 +15,7 @@ class UserDetailViewModel(private val userRepository: IUserRepository) : ViewMod
     private val isLoading = MutableLiveData<Boolean>()
     private val state = MutableLiveData<Int>()
 
+    fun getErrorMessage(): LiveData<String> = errorMessage
     fun getUserData(): LiveData<GithubUser> = userData
     fun getLoadingStatus(): LiveData<Boolean> = isLoading
     fun getState(): LiveData<Int> = state
@@ -25,7 +26,7 @@ class UserDetailViewModel(private val userRepository: IUserRepository) : ViewMod
             githubUser.username,
             object : ApiConfig.ApiHandler<UserSearchItemResponse> {
                 override fun onSuccess(response: UserSearchItemResponse) {
-                    userData.value = if (response == null) null else setData(response)
+                    userData.value = if(response.equals(null)) null else setData(response)
                     isLoading.value = false
                     state.value = ApiConfig.REQUEST_SUCCESS
                 }

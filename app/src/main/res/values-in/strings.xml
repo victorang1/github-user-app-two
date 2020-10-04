@@ -18,4 +18,7 @@
     <string name="text_repository_value">Penyimpanan: %s</string>
     <string name="text_follower_value">Pengikut: %s</string>
     <string name="text_following_value">Mengikuti: %s</string>
+
+    <string name="text_loading">Menggambil data. Mohon tunggu…</string>
+    <string name="text_no_data">Tidak ada data</string>
 </resources>

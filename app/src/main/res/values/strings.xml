@@ -17,4 +17,7 @@
     <string name="text_repository_value">Repository: %s</string>
     <string name="text_follower_value">Follower: %s</string>
     <string name="text_following_value">Following: %s</string>
+
+    <string name="text_loading">Loading data. Please wait…</string>
+    <string name="text_no_data">No data</string>
 </resources>

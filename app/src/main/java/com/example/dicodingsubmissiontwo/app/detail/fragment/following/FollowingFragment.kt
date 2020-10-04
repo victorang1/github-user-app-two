@@ -11,7 +11,7 @@ import com.example.dicodingsubmissiontwo.model.GithubUser
 class FollowingFragment: Fragment() {
 
     companion object {
-        private val ARG_USER = "user"
+        private const val ARG_USER = "user"
 
         fun newInstance(user: GithubUser?): FollowingFragment {
             val fragment = FollowingFragment()

@@ -6,7 +6,11 @@ import retrofit2.Call
 
 interface UserService {
 
-    fun getUserByUsername(username: String) : Call<UserSearchResponse>
+    fun getUserByUsername(username: String): Call<UserSearchResponse>
 
-    fun getUserDetail(username: String) : Call<UserSearchItemResponse>
+    fun getUserDetail(username: String): Call<UserSearchItemResponse>
+
+    fun getUserFollowers(username: String): Call<List<UserSearchItemResponse>>
+
+    fun getUserFollowing(username: String): Call<List<UserSearchItemResponse>>
 }
