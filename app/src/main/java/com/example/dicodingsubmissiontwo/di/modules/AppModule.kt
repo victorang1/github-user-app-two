@@ -2,8 +2,9 @@ package com.example.dicodingsubmissiontwo.di.modules
 
 import android.content.Context
 import android.content.res.Resources
-import com.example.dicodingsubmissiontwo.repository.IUserRepository
-import com.example.dicodingsubmissiontwo.repository.UserRepository
+import com.example.dicodingsubmissiontwo.db.AppDatabase
+import com.example.dicodingsubmissiontwo.repository.user.IUserRepository
+import com.example.dicodingsubmissiontwo.repository.user.UserRepository
 import com.example.dicodingsubmissiontwo.service.ApiConfig
 import com.example.dicodingsubmissiontwo.service.UserService
 import org.koin.android.ext.koin.androidContext
@@ -20,15 +21,15 @@ val appModule = module {
             .build()
     }
 
-    fun provideResources(context: Context) : Resources {
+    fun provideResources(context: Context): Resources {
         return context.resources
     }
 
-    fun provideRepositoryModule(userService: UserService): IUserRepository {
-        return UserRepository(userService)
+    fun provideDatabase(context: Context): AppDatabase {
+        return AppDatabase.getInstance(context)
     }
 
     single { provideRetrofit() }
-    single { provideRepositoryModule(get()) }
+    single { provideDatabase(androidContext()) }
     single { provideResources(androidContext()) }
 }

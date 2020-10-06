@@ -6,7 +6,7 @@
     <string name="text_search">Pencarian</string>
     <string name="text_no_user_found">User tidak ditemukan</string>
     <string name="text_lets_search">Ayo temukan temanmu dengan alat bantuan pencarian</string>
-    <string name="text_search_hint">Masukkan username github</string>
+    <string name="text_search_hint">username</string>
     <string name="text_search_error">Pencarian data gagal. Silahkan coba lagi nanti</string>
 
     <string name="user_arrow_icon">Tekan untuk melihat informasi user lebih detail</string>
@@ -24,4 +24,12 @@
     <string name="text_no_data">Tidak ada data</string>
     <string name="text_settings">Pengaturan</string>
     <string name="text_favorite">Favorit</string>
+
+    <string name="text_fab_add_favorite">Apakah anda yakin ingin menambahkan user ini ke favorit?</string>
+    <string name="text_fab_remove_favorite">Apakah anda yakin ingin menghapus user ini dari favorit?</string>
+    <string name="text_confirmation">Konfirmasi</string>
+    <string name="text_dialog_positive">Ya</string>
+    <string name="text_dialog_negative">Kembali</string>
+    <string name="text_success_add_favorite">User ini berhasil ditambahkan ke favorit</string>
+    <string name="text_success_remove_favorite">User ini berhasil dihapus dari favorit</string>
 </resources>

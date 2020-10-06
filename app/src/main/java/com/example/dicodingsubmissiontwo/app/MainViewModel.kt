@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dicodingsubmissiontwo.model.GithubUser
-import com.example.dicodingsubmissiontwo.repository.IUserRepository
+import com.example.dicodingsubmissiontwo.repository.user.IUserRepository
 import com.example.dicodingsubmissiontwo.service.ApiConfig
 import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
 import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_SUCCESS
