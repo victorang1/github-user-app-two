@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
             mBinding.isError = true
             mBinding.errorMessage = resources.getString(R.string.text_lets_search)
         }
+        supportActionBar?.title = getString(R.string.toolbar_home_title)
         initializeAdapter()
         initializeObserver()
     }

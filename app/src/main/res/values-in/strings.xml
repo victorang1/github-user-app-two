@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Github User Application</string>
+    <string name="toolbar_home_title">User Github</string>
 
     <string name="text_search">Pencarian</string>
     <string name="text_no_user_found">User tidak ditemukan</string>
@@ -21,4 +22,6 @@
 
     <string name="text_loading">Menggambil data. Mohon tunggu…</string>
     <string name="text_no_data">Tidak ada data</string>
+    <string name="text_settings">Pengaturan</string>
+    <string name="text_favorite">Favorit</string>
 </resources>
