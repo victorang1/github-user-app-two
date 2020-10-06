@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.favorite.FavoriteActivity"></activity>
         <activity
             android:name=".app.detail.UserDetailActivity"
             android:theme="@style/UserDetailTheme" />
