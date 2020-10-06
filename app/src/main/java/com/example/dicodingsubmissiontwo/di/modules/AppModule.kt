@@ -3,6 +3,7 @@ package com.example.dicodingsubmissiontwo.di.modules
 import android.content.Context
 import android.content.res.Resources
 import com.example.dicodingsubmissiontwo.db.AppDatabase
+import com.example.dicodingsubmissiontwo.pref.AppPreferences
 import com.example.dicodingsubmissiontwo.repository.user.IUserRepository
 import com.example.dicodingsubmissiontwo.repository.user.UserRepository
 import com.example.dicodingsubmissiontwo.service.ApiConfig
@@ -29,7 +30,12 @@ val appModule = module {
         return AppDatabase.getInstance(context)
     }
 
+    fun provideAppPreferences(context: Context): AppPreferences {
+        return AppPreferences(context)
+    }
+
     single { provideRetrofit() }
     single { provideDatabase(androidContext()) }
     single { provideResources(androidContext()) }
+    factory { provideAppPreferences(androidContext()) }
 }

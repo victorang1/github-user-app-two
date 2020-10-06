@@ -5,6 +5,8 @@ import com.example.dicodingsubmissiontwo.app.detail.UserDetailViewModel
 import com.example.dicodingsubmissiontwo.app.detail.fragment.follower.FollowerViewModel
 import com.example.dicodingsubmissiontwo.app.detail.fragment.following.FollowingViewModel
 import com.example.dicodingsubmissiontwo.app.favorite.FavoriteViewModel
+import com.example.dicodingsubmissiontwo.app.settings.SettingsViewModel
+import com.example.dicodingsubmissiontwo.pref.AppPreferences
 import com.example.dicodingsubmissiontwo.repository.favorite.IFavoriteRepository
 import com.example.dicodingsubmissiontwo.repository.user.IUserRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,9 +37,14 @@ val viewModelModule = module {
         return FavoriteViewModel(favoriteRepository)
     }
 
+    fun provideSettingsViewModel(appPreferences: AppPreferences): SettingsViewModel {
+        return SettingsViewModel(appPreferences)
+    }
+
     viewModel { provideMainViewModel(get()) }
     viewModel { provideUserDetailViewModel(get(), get()) }
     viewModel { provideFollowerViewModel(get()) }
     viewModel { provideFollowingViewModel(get()) }
     viewModel { provideFavoriteViewModel(get()) }
+    viewModel { provideSettingsViewModel(get()) }
 }

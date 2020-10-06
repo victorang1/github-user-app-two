@@ -31,4 +31,7 @@
     <string name="text_dialog_negative">Cancel</string>
     <string name="text_success_add_favorite">This user has been added to favorite</string>
     <string name="text_success_remove_favorite">This user has been removed from favorite</string>
+    <string name="toggle_reminder_to_run_application_everyday">Toggle Reminder To Run Application Everyday</string>
+    <string name="text_reminder">Let\'s find popular user on Github!</string>
+    <string name="text_reminder_title">Github App</string>
 </resources>

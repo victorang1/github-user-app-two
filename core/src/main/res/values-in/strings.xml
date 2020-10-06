@@ -32,4 +32,7 @@
     <string name="text_dialog_negative">Kembali</string>
     <string name="text_success_add_favorite">User ini berhasil ditambahkan ke favorit</string>
     <string name="text_success_remove_favorite">User ini berhasil dihapus dari favorit</string>
+    <string name="toggle_reminder_to_run_application_everyday">Toggle Reminder Untuk Menjalankan Aplikasi Setiap Hari</string>
+    <string name="text_reminder">Mari temukan pengguna populer di Github!</string>
+    <string name="text_reminder_title">Github App</string>
 </resources>

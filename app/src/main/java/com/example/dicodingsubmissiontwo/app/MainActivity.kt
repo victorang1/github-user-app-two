@@ -9,13 +9,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.app.detail.UserDetailActivity
 import com.example.dicodingsubmissiontwo.app.favorite.FavoriteActivity
+import com.example.dicodingsubmissiontwo.app.settings.SettingsActivity
 import com.example.dicodingsubmissiontwo.databinding.ActivityMainBinding
 import com.example.dicodingsubmissiontwo.model.GithubUser
 import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.favorite -> startActivity(Intent(this, FavoriteActivity::class.java))
-            R.id.settings -> Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show()
+            R.id.settings -> startActivity(Intent(this, SettingsActivity::class.java))
         }
         return true
     }
