@@ -3,6 +3,8 @@
     package="com.example.dicodingsubmissiontwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.example.victor.github.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.example.victor.github.WRITE_DATABASE" android:protectionLevel="normal" />
 
     <application
         android:name=".MyApplication"
@@ -23,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.example.victor.github"
+            android:name=".provider.FavoriteProvider"
+            android:exported="true"
+            android:readPermission="com.example.victor.github.READ_DATABASE"
+            android:writePermission="com.example.victor.github.WRITE_DATABASE" />
     </application>
 
 </manifest>
