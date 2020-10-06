@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.dicodingsubmissiontwo.db.entity.FavoriteUser" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_12dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_avatar"
+            android:layout_width="@dimen/image_sm_size"
+            android:layout_height="@dimen/image_sm_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_repository"
+            app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:text="@{user.username}"
+            tools:text="victorang1"
+            />
+
+        <TextView
+            android:id="@+id/tv_repository"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_followers"
+            app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+            app:drawableStartCompat="@drawable/ic_repository"
+            android:drawablePadding="@dimen/dimen_4dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_10sp"
+            android:text="@{String.format(@string/text_repository_value, user.reposCount)}"
+            tools:text="victorang1"
+            />
+
+        <TextView
+            android:id="@+id/tv_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            app:layout_constraintTop_toBottomOf="@id/tv_repository"
+            app:layout_constraintRight_toLeftOf="@id/tv_following"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/civ_avatar"
+            app:drawableStartCompat="@drawable/ic_group_blue"
+            android:drawablePadding="@dimen/dimen_4dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_10sp"
+            android:text="@{String.format(@string/text_follower_value, user.followers)}"
+            tools:text="30"
+            />
+
+        <TextView
+            android:id="@+id/tv_following"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            app:layout_constraintTop_toTopOf="@id/tv_followers"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_followers"
+            app:drawableStartCompat="@drawable/ic_group_yellow"
+            android:drawablePadding="@dimen/dimen_4dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_10sp"
+            android:text="@{String.format(@string/text_following_value, user.following)}"
+            tools:text="30"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -23,13 +23,13 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mBinding: ActivityUserDetailBinding
     private lateinit var mSectionsAdapter: UserDetailAdapter
-    private var githubUser: GithubUser = GithubUser()
+    private var user: GithubUser = GithubUser()
     private val mViewModel: UserDetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_detail)
-        githubUser = intent.getParcelableExtra<GithubUser>(GITHUB_USER_DATA) as GithubUser
+        val githubUser = intent.getParcelableExtra<GithubUser>(GITHUB_USER_DATA) as GithubUser
         if (mViewModel.getState().value == null) {
             mViewModel.getUserData(githubUser)
             mViewModel.checkFavoriteFromStorage(githubUser)
@@ -40,7 +40,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeListener() {
-        mBinding.fabFavorite?.setOnClickListener(this)
+        mBinding.fabFavorite.setOnClickListener(this)
     }
 
     private fun initializeAdapter(user: GithubUser?) {
@@ -53,7 +53,9 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializeObserver() {
         mViewModel.getState().observe(this, Observer { state ->
             if (state == ApiConfig.REQUEST_SUCCESS) {
-                mBinding.user = mViewModel.getUserData().value ?: loadUserError()
+                val userData = mViewModel.getUserData().value
+                mBinding.user = userData ?: loadUserError()
+                user = userData ?: loadUserError()
                 Glide.with(this)
                     .load(mBinding.user?.avatar)
                     .apply(RequestOptions.errorOf(R.drawable.ic_person_white))
@@ -61,13 +63,18 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
             } else if (state == ApiConfig.REQUEST_ERROR) {
                 mBinding.user = loadUserError(mViewModel.getErrorMessage().value)
             } else if (state == UserDetailViewModel.ACTION_SUCCESS) {
-                mViewModel.checkFavoriteFromStorage(githubUser)
-                val message = if(isFavorite()) getString(R.string.text_success_remove_favorite) else getString(R.string.text_success_add_favorite)
+                mViewModel.checkFavoriteFromStorage(user)
+                val message =
+                    if (isFavorite()) getString(R.string.text_success_remove_favorite) else getString(
+                        R.string.text_success_add_favorite
+                    )
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         })
         mViewModel.getFavoriteStatus().observe(this, Observer {
-            mBinding.fabFavorite?.visibility = View.VISIBLE
+            val drawableId = if (it) R.drawable.ic_delete else R.drawable.ic_favorite
+            mBinding.fabFavorite.setImageResource(drawableId)
+            mBinding.fabFavorite.visibility = View.VISIBLE
         })
         mViewModel.getLoadingStatus().observe(this) { isLoading ->
             mBinding.isLoading = isLoading
@@ -90,12 +97,12 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun showDialog() {
         val message = if (isFavorite()) getString(R.string.text_fab_remove_favorite)
-            else getString(R.string.text_fab_add_favorite)
+        else getString(R.string.text_fab_add_favorite)
         val mBuilder = AlertDialog.Builder(this, R.style.AlertDialogTheme)
             .setTitle(getString(R.string.text_confirmation))
             .setMessage(message)
             .setPositiveButton(getString(R.string.text_dialog_positive)) { _, _ ->
-                mViewModel.runFavoriteAction(githubUser)
+                mViewModel.runFavoriteAction(user)
             }
             .setNegativeButton(getString(R.string.text_dialog_negative)) { dialog, _ ->
                 dialog.cancel()

@@ -1,6 +1,5 @@
 package com.example.dicodingsubmissiontwo.app.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -94,9 +93,9 @@ class UserDetailViewModel(
             user.id,
             user.username,
             user.avatar,
-            user.reposCount,
-            user.followers,
-            user.following
+            user.reposCount.toString(),
+            user.followers.toString(),
+            user.following.toString()
         )
     }
 }

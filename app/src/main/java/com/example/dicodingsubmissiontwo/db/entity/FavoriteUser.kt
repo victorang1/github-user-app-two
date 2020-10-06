@@ -10,7 +10,7 @@ class FavoriteUser(
     val userId: Long,
     val username: String,
     val avatar: String,
-    val reposCount: Long,
-    val followers: Long,
-    val following: Long,
+    val reposCount: String,
+    val followers: String,
+    val following: String,
 ) : BaseObservable()
