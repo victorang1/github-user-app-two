@@ -210,7 +210,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_16dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:backgroundTint="@color/colorPink"
             android:padding="@dimen/dimen_8dp"
             android:textColor="@color/colorWhite"

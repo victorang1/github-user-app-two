@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     override fun onItemClicked(data: GithubUser) {
         val intent = Intent(this@MainActivity, UserDetailActivity::class.java)
         intent.putExtra(UserDetailActivity.GITHUB_USER_DATA, data)
+        intent.putExtra(UserDetailActivity.IS_FAVORITE, false)
         startActivity(intent)
     }
 }

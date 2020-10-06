@@ -9,9 +9,16 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.databinding.FavoriteItemLayoutBinding
 import com.example.dicodingsubmissiontwo.db.entity.FavoriteUser
+import com.example.dicodingsubmissiontwo.model.GithubUser
 
 class FavoriteAdapter(val context: Context, private var favoriteList: List<FavoriteUser>) :
     RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickListener(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         return FavoriteViewHolder(
@@ -40,10 +47,15 @@ class FavoriteAdapter(val context: Context, private var favoriteList: List<Favor
 
         fun bind(favoriteUser: FavoriteUser) {
             itemBinding.user = favoriteUser
+            itemBinding.clFavorite.setOnClickListener { onItemClickCallback?.onItemClicked(favoriteUser) }
             Glide.with(context)
                 .load(favoriteUser.avatar)
                 .apply(RequestOptions.errorOf(R.drawable.ic_person))
                 .into(itemBinding.civAvatar)
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: FavoriteUser)
     }
 }

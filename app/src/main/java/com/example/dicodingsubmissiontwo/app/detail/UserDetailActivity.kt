@@ -19,6 +19,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val GITHUB_USER_DATA: String = "user_data"
+        const val IS_FAVORITE: String = "is_favorite"
     }
 
     private lateinit var mBinding: ActivityUserDetailBinding
@@ -30,9 +31,10 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_detail)
         val githubUser = intent.getParcelableExtra<GithubUser>(GITHUB_USER_DATA) as GithubUser
+        val isFromFavorite = intent.getBooleanExtra(IS_FAVORITE, false)
         if (mViewModel.getState().value == null) {
             mViewModel.getUserData(githubUser)
-            mViewModel.checkFavoriteFromStorage(githubUser)
+            if(!isFromFavorite) mViewModel.checkFavoriteFromStorage(githubUser)
         }
         initializeListener()
         initializeAdapter(githubUser)
