@@ -12,7 +12,6 @@ import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.app.detail.UserDetailActivity
 import com.example.dicodingsubmissiontwo.databinding.ActivityFavoriteBinding
 import com.example.dicodingsubmissiontwo.db.entity.FavoriteUser
-import com.example.dicodingsubmissiontwo.model.GithubUser
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickCallback {

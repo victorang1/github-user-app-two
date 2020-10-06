@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.di.modules
+package com.example.consumerapp.di.modules
 
 import android.content.ContentResolver
 import com.example.consumerapp.repository.FavoriteRepository

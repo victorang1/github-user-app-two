@@ -34,7 +34,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         val isFromFavorite = intent.getBooleanExtra(IS_FAVORITE, false)
         if (mViewModel.getState().value == null) {
             mViewModel.getUserData(githubUser)
-            if(!isFromFavorite) mViewModel.checkFavoriteFromStorage(githubUser)
+            if (!isFromFavorite) mViewModel.checkFavoriteFromStorage(githubUser)
         }
         initializeListener()
         initializeAdapter(githubUser)
@@ -54,23 +54,26 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initializeObserver() {
         mViewModel.getState().observe(this, Observer { state ->
-            if (state == ApiConfig.REQUEST_SUCCESS) {
-                val userData = mViewModel.getUserData().value
-                mBinding.user = userData ?: loadUserError()
-                user = userData ?: loadUserError()
-                Glide.with(this)
-                    .load(mBinding.user?.avatar)
-                    .apply(RequestOptions.errorOf(R.drawable.ic_person_white))
-                    .into(mBinding.civAvatar)
-            } else if (state == ApiConfig.REQUEST_ERROR) {
-                mBinding.user = loadUserError(mViewModel.getErrorMessage().value)
-            } else if (state == UserDetailViewModel.ACTION_SUCCESS) {
-                mViewModel.checkFavoriteFromStorage(user)
-                val message =
-                    if (isFavorite()) getString(R.string.text_success_remove_favorite) else getString(
-                        R.string.text_success_add_favorite
-                    )
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            when (state) {
+                ApiConfig.REQUEST_SUCCESS -> {
+                    val userData = mViewModel.getUserData().value
+                    mBinding.user = userData ?: loadUserError()
+                    user = userData ?: loadUserError()
+                    Glide.with(this)
+                        .load(mBinding.user?.avatar)
+                        .apply(RequestOptions.errorOf(R.drawable.ic_person_white))
+                        .into(mBinding.civAvatar)
+                }
+                ApiConfig.REQUEST_ERROR -> mBinding.user =
+                    loadUserError(mViewModel.getErrorMessage().value)
+                UserDetailViewModel.ACTION_SUCCESS -> {
+                    mViewModel.checkFavoriteFromStorage(user)
+                    val message =
+                        if (isFavorite()) getString(R.string.text_success_remove_favorite) else getString(
+                            R.string.text_success_add_favorite
+                        )
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
             }
         })
         mViewModel.getFavoriteStatus().observe(this, Observer {

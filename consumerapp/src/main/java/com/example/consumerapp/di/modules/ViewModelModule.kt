@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.di.modules
+package com.example.consumerapp.di.modules
 
 import com.example.consumerapp.app.MainViewModel
 import com.example.consumerapp.repository.IFavoriteRepository
