@@ -6,11 +6,11 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import com.example.core.FavoriteProviderConfig.Companion.AUTHORITY
+import com.example.core.FavoriteProviderConfig.Companion.CONTENT_URI
+import com.example.core.FavoriteProviderConfig.Companion.TABLE_NAME
 import com.example.dicodingsubmissiontwo.db.AppDatabase
 import com.example.dicodingsubmissiontwo.db.dao.FavoriteProviderDao
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.AUTHORITY
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.CONTENT_URI
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.TABLE_NAME
 import com.example.dicodingsubmissiontwo.util.HelperUtil
 
 class FavoriteProvider : ContentProvider() {

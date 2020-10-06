@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.provider
+package com.example.core
 
 import android.net.Uri
 

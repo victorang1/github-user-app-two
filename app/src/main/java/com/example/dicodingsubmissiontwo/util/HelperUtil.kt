@@ -1,13 +1,13 @@
 package com.example.dicodingsubmissiontwo.util
 
 import android.content.ContentValues
+import com.example.core.FavoriteProviderConfig.Companion.AVATAR
+import com.example.core.FavoriteProviderConfig.Companion.FOLLOWERS
+import com.example.core.FavoriteProviderConfig.Companion.FOLLOWING
+import com.example.core.FavoriteProviderConfig.Companion.REPOS_COUNT
+import com.example.core.FavoriteProviderConfig.Companion.USERNAME
+import com.example.core.FavoriteProviderConfig.Companion.USER_ID
 import com.example.dicodingsubmissiontwo.db.entity.FavoriteUser
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.AVATAR
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.FOLLOWERS
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.FOLLOWING
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.REPOS_COUNT
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.USERNAME
-import com.example.dicodingsubmissiontwo.provider.FavoriteProviderConfig.Companion.USER_ID
 
 class HelperUtil {
 
