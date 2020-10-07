@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.repository
+package com.example.dicodingsubmissiontwo.repository.user
 
 import android.content.res.Resources
 import com.example.dicodingsubmissiontwo.R

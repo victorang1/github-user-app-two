@@ -11,6 +11,9 @@
         <variable
             name="isLoading"
             type="Boolean" />
+        <variable
+            name="fabText"
+            type="String" />
     </data>
 
     <RelativeLayout
@@ -200,6 +203,20 @@
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
             android:layout_centerInParent="true"
             tools:visibility="visible"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:visibility="gone"
+            android:backgroundTint="@color/colorPink"
+            android:padding="@dimen/dimen_8dp"
+            android:textColor="@color/colorWhite"
+            app:srcCompat="@drawable/ic_favorite"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             />
 
     </RelativeLayout>

@@ -14,12 +14,32 @@
         <item name="actionMenuTextColor">@color/colorWhite</item>
     </style>
 
+    <style name="SettingsTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorBlack</item>
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+    </style>
+
     <style name="ProgressBarStyle" parent="@style/AppTheme">
         <item name="colorAccent">@color/colorBlack</item>
     </style>
 
     <style name="ProgressBarDetailStyle" parent="@style/AppTheme">
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorBlack</item>
     </style>
 
 </resources>

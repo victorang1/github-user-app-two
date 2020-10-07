@@ -3,6 +3,15 @@
     package="com.example.dicodingsubmissiontwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <permission
+        android:name="com.example.victor.github.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.victor.github.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:name=".MyApplication"
@@ -12,6 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.settings.SettingsActivity"
+            android:theme="@style/SettingsTheme" />
+        <activity android:name=".app.favorite.FavoriteActivity" />
         <activity
             android:name=".app.detail.UserDetailActivity"
             android:theme="@style/UserDetailTheme" />
@@ -22,6 +34,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".provider.FavoriteProvider"
+            android:authorities="com.example.victor.github"
+            android:exported="true"
+            android:readPermission="com.example.victor.github.READ_DATABASE"
+            android:writePermission="com.example.victor.github.WRITE_DATABASE" />
+
+        <receiver
+            android:name=".receiver.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

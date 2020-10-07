@@ -1,4 +1,4 @@
-package com.example.dicodingsubmissiontwo.repository
+package com.example.dicodingsubmissiontwo.repository.user
 
 import com.example.dicodingsubmissiontwo.service.ApiConfig
 import com.example.dicodingsubmissiontwo.service.datamodel.UserSearchItemResponse

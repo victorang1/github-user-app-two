@@ -26,6 +26,8 @@ data class GithubUser(
     @IgnoredOnParcel
     private val resources: Resources by inject()
 
+    constructor() : this(0, "", "", 0, 0, 0, "", "", "")
+
     constructor(
         id: Long,
         username: String,
@@ -47,36 +49,36 @@ data class GithubUser(
 
     @Bindable
     fun getNameDisplay(): String? {
-        if(name.isNullOrEmpty()) return "-"
+        if (name.isNullOrEmpty()) return "-"
         return name
     }
 
 
     @Bindable
     fun getLocationDisplay(): String {
-        if(location.isNullOrEmpty()) return "-"
+        if (location.isNullOrEmpty()) return "-"
         return location
     }
 
 
     @Bindable
     fun getCompanyDisplay(): String {
-        if(company.isNullOrEmpty()) return "-"
+        if (company.isNullOrEmpty()) return "-"
         return company
     }
 
     @Bindable
     fun getNameVisibility(): Int {
-        return if(name.isNullOrEmpty()) View.GONE else View.VISIBLE
+        return if (name.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
     @Bindable
     fun getCompanyVisibility(): Int {
-        return if(company.isNullOrEmpty()) View.GONE else View.VISIBLE
+        return if (company.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
     @Bindable
     fun getLocationVisibility(): Int {
-        return if(location.isNullOrEmpty()) View.GONE else View.VISIBLE
+        return if (location.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 }

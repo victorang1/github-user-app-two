@@ -10,4 +10,18 @@
         app:showAsAction="collapseActionView|always"
         />
 
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/text_settings"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/text_favorite"
+        app:showAsAction="always"
+        />
+
 </menu>

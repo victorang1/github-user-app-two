@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingsubmissiontwo.R
 import com.example.dicodingsubmissiontwo.app.detail.UserDetailActivity
+import com.example.dicodingsubmissiontwo.app.favorite.FavoriteActivity
+import com.example.dicodingsubmissiontwo.app.settings.SettingsActivity
 import com.example.dicodingsubmissiontwo.databinding.ActivityMainBinding
 import com.example.dicodingsubmissiontwo.model.GithubUser
 import com.example.dicodingsubmissiontwo.service.ApiConfig.Companion.REQUEST_ERROR
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
             mBinding.isError = true
             mBinding.errorMessage = resources.getString(R.string.text_lets_search)
         }
+        supportActionBar?.title = getString(R.string.toolbar_home_title)
         initializeAdapter()
         initializeObserver()
     }
@@ -85,6 +89,14 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.favorite -> startActivity(Intent(this, FavoriteActivity::class.java))
+            R.id.settings -> startActivity(Intent(this, SettingsActivity::class.java))
+        }
+        return true
+    }
+
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) mViewModel.searchUser(query)
         searchView.clearFocus()
@@ -96,6 +108,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     override fun onItemClicked(data: GithubUser) {
         val intent = Intent(this@MainActivity, UserDetailActivity::class.java)
         intent.putExtra(UserDetailActivity.GITHUB_USER_DATA, data)
+        intent.putExtra(UserDetailActivity.IS_FAVORITE, false)
         startActivity(intent)
     }
 }
