@@ -48,6 +48,7 @@ class FavoriteAdapter(val context: Context, private var favoriteList: List<Favor
         fun bind(favoriteUser: FavoriteUser) {
             itemBinding.user = favoriteUser
             itemBinding.clFavorite.setOnClickListener { onItemClickCallback?.onItemClicked(favoriteUser) }
+            itemBinding.imageBtnRemove.setOnClickListener { onItemClickCallback?.onRemoveClicked(favoriteUser) }
             Glide.with(context)
                 .load(favoriteUser.avatar)
                 .apply(RequestOptions.errorOf(R.drawable.ic_person))
@@ -57,5 +58,6 @@ class FavoriteAdapter(val context: Context, private var favoriteList: List<Favor
 
     interface OnItemClickCallback {
         fun onItemClicked(data: FavoriteUser)
+        fun onRemoveClicked(data: FavoriteUser)
     }
 }

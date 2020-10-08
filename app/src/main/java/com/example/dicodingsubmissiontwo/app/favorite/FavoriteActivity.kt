@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -44,6 +45,11 @@ class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickCallbac
             }
             else mBinding.tvNoData.visibility = View.GONE
         })
+        mViewModel.getState().observe(this, Observer { state ->
+            if (state == FavoriteViewModel.DELETE_SUCCESS) {
+                Toast.makeText(this, getString(R.string.text_success_remove_favorite), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onItemClicked(data: FavoriteUser) {
@@ -51,5 +57,9 @@ class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.OnItemClickCallbac
         intent.putExtra(UserDetailActivity.GITHUB_USER_DATA, mViewModel.getGithubUserObject(data))
         intent.putExtra(UserDetailActivity.IS_FAVORITE, true)
         startActivity(intent)
+    }
+
+    override fun onRemoveClicked(data: FavoriteUser) {
+        mViewModel.removeFavoriteUser(data)
     }
 }
