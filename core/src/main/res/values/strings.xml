@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Github User Application</string>
     <string name="toolbar_home_title">Github User</string>
+    <string name="user_application">User Application</string>
+    <string name="github">Github</string>
 
     <string name="text_search">Search</string>
     <string name="text_no_user_found">No user found</string>
