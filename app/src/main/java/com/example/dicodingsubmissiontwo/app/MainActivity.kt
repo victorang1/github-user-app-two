@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.View
 import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingsubmissiontwo.R
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
     }
 
     private fun initializeObserver() {
-        mViewModel.getState().observe(this) { state ->
+        mViewModel.getState().observe(this, Observer { state ->
             if (state == REQUEST_SUCCESS) {
                 if (!mViewModel.getSearchResult().value.isNullOrEmpty()) {
                     mBinding.isError = false
@@ -62,11 +63,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, UserAd
                 mBinding.isError = true
                 mBinding.errorMessage = mViewModel.getErrorMessage().value ?: resources.getString(R.string.text_search_error)
             }
-        }
-        mViewModel.getLoadingStatus().observe(this) { isLoading ->
+        })
+        mViewModel.getLoadingStatus().observe(this, Observer { isLoading ->
             mBinding.isLoading = isLoading
             if (isLoading) mBinding.groupError.visibility = View.GONE
-        }
+        })
     }
 
     private fun initializeSearchView(menu: Menu) {
