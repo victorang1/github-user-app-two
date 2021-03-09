@@ -54,17 +54,19 @@ class UserDetailViewModel(
     }
 
     private fun setData(itemResponse: UserSearchItemResponse): GithubUser {
-        return GithubUser(
-            itemResponse.id,
-            itemResponse.username,
-            itemResponse.avatar,
-            itemResponse.reposCount,
-            itemResponse.followers,
-            itemResponse.following,
-            itemResponse.location,
-            itemResponse.company,
-            itemResponse.name
-        )
+        with (itemResponse) {
+            return GithubUser(
+                id,
+                username,
+                avatar,
+                reposCount,
+                followers,
+                following,
+                location,
+                company,
+                name
+            )
+        }
     }
 
     fun checkFavoriteFromStorage(user: GithubUser) {
