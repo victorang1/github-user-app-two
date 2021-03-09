@@ -21,27 +21,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.settings.SettingsActivity"
-            android:theme="@style/SettingsTheme" />
-        <activity android:name=".app.favorite.FavoriteActivity" />
-        <activity
-            android:name=".app.detail.UserDetailActivity"
-            android:theme="@style/UserDetailTheme" />
-        <activity android:name=".app.MainActivity">
+        <activity android:name="com.example.dicodingsubmissiontwo.app.splash.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".app.settings.SettingsActivity"
+            android:theme="@style/SettingsTheme" />
+        <activity android:name=".app.favorite.FavoriteActivity" />
+        <activity
+            android:name=".app.detail.UserDetailActivity"
+            android:theme="@style/UserDetailTheme" />
+        <activity android:name=".app.MainActivity" />
         <provider
             android:name=".provider.FavoriteProvider"
             android:authorities="com.example.victor.github"
             android:exported="true"
             android:readPermission="com.example.victor.github.READ_DATABASE"
             android:writePermission="com.example.victor.github.WRITE_DATABASE" />
-
         <receiver
             android:name=".receiver.AlarmReceiver"
             android:enabled="true"

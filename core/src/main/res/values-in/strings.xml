@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">Github User Application</string>
     <string name="toolbar_home_title">User Github</string>
+    <string name="user_application">User Application</string>
+    <string name="github">Github</string>
 
     <string name="text_search">Pencarian</string>
     <string name="text_no_user_found">User tidak ditemukan</string>

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.example.dicodingsubmissiontwo.R
+import com.example.dicodingsubmissiontwo.app.MainActivity
 import java.util.*
 
 class AlarmReceiver: BroadcastReceiver() {
@@ -34,6 +35,9 @@ class AlarmReceiver: BroadcastReceiver() {
     }
 
     private fun showAlarmNotification(context: Context, title: String, message: String) {
+        val intent = Intent (context , MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity (context, 0, intent , 0)
+
         val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -41,6 +45,7 @@ class AlarmReceiver: BroadcastReceiver() {
             .setContentTitle(title)
             .setContentText(message)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+            .setContentIntent(pendingIntent)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setSound(alarmSound)
 
